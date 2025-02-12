@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    ECR_REPO: "339712871948.dkr.ecr.us-east-1.amazonaws.com/order"
+    ECR_REPO: "339712871948.dkr.ecr.us-east-1.amazonaws.com"
     ECR_REGION: "us-east-1"
     CONTAINER_NAME: "lks-order-container"
 
