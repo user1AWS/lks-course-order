@@ -12,9 +12,12 @@ phases:
       nodejs: 16
       docker: 20
     commands:
-      - yum update -y
-      - yum install -y curl unzip aws-cli
-      - aws --version
+      - echo "Checking OS details..."
+      - cat /etc/os-release || echo "OS info not found"
+      - echo "Checking available package managers..."
+      - command -v yum || echo "YUM not found!"
+      - command -v apt-get || echo "APT-GET not found!"
+      - command -v apk || echo "APK not found!"
       - echo "Installing dependencies..."
       - npm install
 
