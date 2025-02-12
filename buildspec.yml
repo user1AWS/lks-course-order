@@ -14,7 +14,6 @@ phases:
     commands:
       - yum update -y
       - yum install -y curl unzip aws-cli
-      - sudo ./aws/install
       - aws --version
       - echo "Installing dependencies..."
       - npm install
