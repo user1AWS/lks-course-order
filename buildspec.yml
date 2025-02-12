@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    ECR_REPO: "339712871948.dkr.ecr.us-east-1.amazonaws.com"
+    ECR_REPO: "339712871948.dkr.ecr.us-east-1.amazonaws.com/order"
     ECR_REGION: "us-east-1"
     CONTAINER_NAME: "lks-order-container"
 
@@ -12,6 +12,9 @@ phases:
       nodejs: 16
       docker: 20
     commands:
+      - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      - unzip awscliv2.zip
+      - sudo ./aws/install
       - aws --version
       - echo "Installing dependencies..."
       - npm install
