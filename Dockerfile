@@ -1,28 +1,34 @@
 # Gunakan base image yang ringan
-FROM node:16-alpine
+FROM node:18-alpine
+
+# Set direktori kerja awal
+WORKDIR /usr/src/app
 
 # Install dependencies yang dibutuhkan AWS CLI v2
-RUN apk add --no-cache \
+RUN apk update && apk add --no-cache \
     curl \
     unzip \
     less \
     groff \
     python3 \
-    py3-pip
+    py3-pip \
+    git \
+    aws-cli
 
-# Download dan install AWS CLI v2
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
-    unzip awscliv2.zip && \
-    ./aws/install && \
-    rm -rf aws awscliv2.zip
+# Clone repository agar file app.js tersedia
+RUN git clone https://github.com/user1AWS/lks-course-order.git /usr/src/app
 
-# Verifikasi instalasi AWS CLI
-RUN aws --version
+# Pastikan file ada
+RUN ls -l /usr/src/app
 
-# Lanjutkan dengan perintah yang ada
-WORKDIR /usr/src/app
+# Salin semua file setelah cloning
 COPY . .
+
+# Install dependencies
 RUN npm install
 
+# Expose port aplikasi
 EXPOSE 8000
+
+# Jalankan aplikasi
 CMD [ "npm", "run", "start" ]
