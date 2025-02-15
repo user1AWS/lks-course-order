@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    ECR_REPO: "339712871948.dkr.ecr.us-east-1.amazonaws.com/order"
+    ECR_REPO: "339712871948.dkr.ecr.us-east-1.amazonaws.com"
     ECR_REGION: "us-east-1"
     CONTAINER_NAME: "lks-order-container"
 
@@ -16,11 +16,11 @@ phases:
       - cat /etc/os-release || echo "OS info not found"
       - command -v apk || echo "APK not found!"
       - echo "Installing dependencies..."
-      - npm install
 
   pre_build:
     commands:
       - echo "Logging into Amazon ECR..."
+      - npm install
       - aws ecr get-login-password --region $ECR_REGION | docker login --username AWS --password-stdin $ECR_REPO
 
   build:
@@ -28,13 +28,13 @@ phases:
       - echo "Running unit tests..."
       - npm run test
       - echo "Building Docker image..."
-      - docker build -t $ECR_REPO:latest .
+      - docker build -t ${ECR_REPO}/order:latest .
 
   post_build:
     commands:
       - echo "Pushing Docker image to ECR..."
-      - docker push $ECR_REPO:latest
-      - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME ${ECR_REPO}:latest > imagedefinitions.json
+      - docker push ${ECR_REPO}/order:latest
+      - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME ${ECR_REPO}/order:latest > imagedefinitions.json
       - echo "Build complete."
 
 reports:
