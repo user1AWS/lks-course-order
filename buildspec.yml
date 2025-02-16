@@ -17,7 +17,6 @@ phases:
       - command -v apk || echo "APK not found!"
       - echo "Installing dependencies..."
       - echo "Installing AWS Elastic Beanstalk CLI..."
-      - pip install awsebcli
 
   pre_build:
     commands:
