@@ -5,6 +5,9 @@ env:
     ECR_REPO: "339712871948.dkr.ecr.us-east-1.amazonaws.com"
     ECR_REGION: "us-east-1"
     CONTAINER_NAME: "lks-order-container"
+    AWS_REGION: "us-east-1"
+    AWS_DYNAMODB_TABLE_PROD: "lks-order-production"
+    AWS_DYNAMODB_TABLE_TEST: "lks-order-testing"
 
 phases:
   install:
@@ -18,7 +21,6 @@ phases:
       - echo "Installing dependencies..."
       - apk add --no-cache docker-cli
       - npm install
-      - npm install -g mocha
 
   pre_build:
     commands:
