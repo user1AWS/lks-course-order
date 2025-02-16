@@ -21,6 +21,9 @@ phases:
       - echo "Installing dependencies..."
       - apk add --no-cache docker-cli
       - npm install
+      - echo "Check npm"
+      - npm list mocha
+      - npm list mocha-junit-reporter
       - echo "Installing AWS Elastic Beanstalk CLI..."
       - python3 -m venv ebcli-venv
       - source ebcli-venv/bin/activate
