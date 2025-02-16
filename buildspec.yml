@@ -21,9 +21,6 @@ phases:
       - echo "Installing dependencies..."
       - apk add --no-cache docker-cli
       - npm install
-      - echo "Check npm"
-      - npm list mocha
-      - npm list mocha-junit-reporter
       - echo "Installing AWS Elastic Beanstalk CLI..."
       - python3 -m venv ebcli-venv
       - source ebcli-venv/bin/activate
@@ -38,7 +35,7 @@ phases:
   build:
     commands:
       - echo "Running unit tests..."
-      - npm run test
+      - NODE_ENV=testing PORT=9000 MOCHA_FILE=./report/test-result.xml mocha --timeout 30000 --exit --reporter mocha-junit-reporter --verbose
       - echo "Building Docker image..."
       - docker build -t ${ECR_REPO}/order:latest .
 
