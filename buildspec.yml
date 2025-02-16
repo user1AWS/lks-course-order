@@ -16,6 +16,7 @@ phases:
       docker: 20
     commands:
       - echo "Checking OS details..."
+      - ls -lah test
       - cat /etc/os-release || echo "OS info not found"
       - command -v apk || echo "APK not found!"
       - echo "Installing dependencies..."
