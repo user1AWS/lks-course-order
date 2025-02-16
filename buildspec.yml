@@ -17,6 +17,7 @@ phases:
       - command -v apk || echo "APK not found!"
       - echo "Installing dependencies..."
       - apk add --no-cache docker-cli
+      - npm install
       - echo "Installing AWS Elastic Beanstalk CLI..."
       - python3 -m venv ebcli-venv
       - source ebcli-venv/bin/activate
@@ -26,7 +27,6 @@ phases:
   pre_build:
     commands:
       - echo "Logging into Amazon ECR..."
-      - npm install
       - aws ecr get-login-password --region $ECR_REGION | docker login --username AWS --password-stdin $ECR_REPO
 
   build:
