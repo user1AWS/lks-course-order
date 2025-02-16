@@ -16,6 +16,9 @@ phases:
       - cat /etc/os-release || echo "OS info not found"
       - command -v apk || echo "APK not found!"
       - echo "Installing dependencies..."
+      - echo "Installing AWS Elastic Beanstalk CLI..."
+      - pip install --upgrade pip
+      - pip install awsebcli
 
   pre_build:
     commands:
