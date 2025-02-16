@@ -20,12 +20,12 @@ phases:
       - command -v apk || echo "APK not found!"
       - echo "Installing dependencies..."
       - apk add --no-cache docker-cli
-      - npm install
       - echo "Installing AWS Elastic Beanstalk CLI..."
       - python3 -m venv ebcli-venv
       - source ebcli-venv/bin/activate
       - pip install --upgrade pip
       - pip install awsebcli
+      - npm install
 
   pre_build:
     commands:
@@ -35,7 +35,7 @@ phases:
   build:
     commands:
       - echo "Running unit tests..."
-      - NODE_ENV=testing PORT=9000 MOCHA_FILE=./report/test-result.xml mocha --timeout 30000 --exit --reporter mocha-junit-reporter --verbose
+      - NODE_ENV=testing PORT=9000 DEBUG=mocha:* npm run test
       - echo "Building Docker image..."
       - docker build -t ${ECR_REPO}/order:latest .
 
