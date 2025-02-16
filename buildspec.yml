@@ -20,10 +20,6 @@ phases:
       - npm install
       - npm install -g mocha
       - echo "Installing AWS Elastic Beanstalk CLI..."
-      - python3 -m venv ebcli-venv
-      - source ebcli-venv/bin/activate
-      - pip install --upgrade pip
-      - pip install awsebcli
 
   pre_build:
     commands:
