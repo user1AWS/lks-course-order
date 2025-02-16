@@ -19,7 +19,6 @@ phases:
       - apk add --no-cache docker-cli
       - npm install
       - npm install -g mocha
-      - echo "Installing AWS Elastic Beanstalk CLI..."
 
   pre_build:
     commands:
