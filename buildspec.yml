@@ -16,6 +16,7 @@ phases:
       - cat /etc/os-release || echo "OS info not found"
       - command -v apk || echo "APK not found!"
       - echo "Installing dependencies..."
+      - apk add --no-cache docker-cli
       - echo "Installing AWS Elastic Beanstalk CLI..."
       - python3 -m venv ebcli-venv
       - source ebcli-venv/bin/activate
