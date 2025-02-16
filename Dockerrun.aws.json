@@ -5,7 +5,7 @@
       "Key": "config.json"
    },
    "Image": {
-      "Name": "339712871948.dkr.ecr.us-east-1.amazonaws.com/order/lks-order-image:latest"
+      "Name": "339712871948.dkr.ecr.us-east-1.amazonaws.com/order:latest"
    },
    "Ports": [
       {
