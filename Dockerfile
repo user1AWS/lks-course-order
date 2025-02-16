@@ -31,21 +31,3 @@ EXPOSE 8000
 
 # Jalankan aplikasi
 CMD [ "npm", "run", "start" ]
-
-b. Dockerrun.aws.json
-{
-   "AWSEBDockerrunVersion": "1",
-   "Authentication": {
-      "Bucket": "lks-order-bucket", 
-      "Key": "config.json"
-   },
-   "Image": {
-      "Name": "339712871948.dkr.ecr.us-east-1.amazonaws.com/order:latest"
-   },
-   "Ports": [
-      {
-         "ContainerPort": 8000,
-         "HostPort": 8081
-      }
-   ]
-}
