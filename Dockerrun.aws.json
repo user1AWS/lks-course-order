@@ -1,7 +1,7 @@
 {
    "AWSEBDockerrunVersion": "1",
    "Authentication": {
-      "Bucket": " https://lks-order-bucket.s3.us-east-1.amazonaws.com", 
+      "Bucket": "lks-order-bucket", 
       "Key": "config.json"
    },
    "Image": {
