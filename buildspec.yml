@@ -29,6 +29,7 @@ phases:
       - npm install
       - echo "Testing and Debugging"
       - env
+      - aws dynamodb list-tables --region us-east-1
 
   pre_build:
     commands:
