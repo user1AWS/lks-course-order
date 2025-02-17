@@ -16,7 +16,6 @@ phases:
       docker: 20
     commands:
       - echo "Checking OS details..."
-      - aws dynamodb list-tables --region us-east-1
       - cat /etc/os-release || echo "OS info not found"
       - command -v apk || echo "APK not found!"
       - echo "Installing dependencies..."
@@ -27,6 +26,10 @@ phases:
       - pip install --upgrade pip
       - pip install awsebcli
       - npm install
+      - echo "Testing and Debugging"
+      - ls -l /codebuild/output/src315954659/src/test/
+      - printenv | grep AWS
+      - printenv | grep NODE_ENV
 
   pre_build:
     commands:
@@ -36,7 +39,7 @@ phases:
   build:
     commands:
       - echo "Running unit tests..."
-      - NODE_ENV=testing PORT=9000 DEBUG=mocha:* npm run test
+      - DEBUG=* npm run test
       - echo "Building Docker image..."
       - docker build -t ${ECR_REPO}/order:latest .
 
