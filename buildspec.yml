@@ -8,6 +8,7 @@ env:
     AWS_REGION: "us-east-1"
     AWS_DYNAMODB_TABLE_PROD: "lks-order-production"
     AWS_DYNAMODB_TABLE_TEST: "lks-order-testing"
+    PORT: 3000
 
 phases:
   install:
