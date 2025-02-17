@@ -27,8 +27,6 @@ phases:
       - pip install awsebcli
       - npm install
       - echo "Testing and Debugging"
-      - printenv | grep AWS
-      - printenv | grep NODE_ENV
 
   pre_build:
     commands:
