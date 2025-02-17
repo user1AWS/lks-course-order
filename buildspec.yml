@@ -27,6 +27,7 @@ phases:
       - pip install awsebcli
       - npm install
       - echo "Testing and Debugging"
+      - env
 
   pre_build:
     commands:
