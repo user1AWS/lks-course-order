@@ -1,5 +1,5 @@
-FROM node:16-alpine
-RUN apk add g++ make py3-pip
+FROM node:18-alpine
+RUN apk update && apk add g++ make py3-pip nodejs npm
 
 ARG NODE_ENV=production
 ARG PORT=8000
@@ -9,6 +9,8 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 COPY . .
+RUN node -v
+RUN npm -v
 RUN npm install
 
 
