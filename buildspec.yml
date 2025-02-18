@@ -42,6 +42,7 @@ phases:
     commands:
       - echo "Running unit tests..."
       - npm install chai mocha mocha-junit-reporter
+      - npm test
       - npm run test
       - echo "Building Docker image..."
       - docker build -t ${ECR_REPO}/order:v1 .
