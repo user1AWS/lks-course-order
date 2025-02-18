@@ -8,6 +8,7 @@ env:
     AWS_REGION: "us-east-1"
     AWS_DYNAMODB_TABLE_PROD: "lks-order-production"
     AWS_DYNAMODB_TABLE_TEST: "lks-order-testing"
+    NODE_ENV: "development"
 
 phases:
   install:
@@ -41,8 +42,6 @@ phases:
   build:
     commands:
       - echo "Running unit tests..."
-      - npm install -g mocha mocha-junit-reporter
-      - npm install -g chai 
       - npm run test --verbose
       - echo "Building Docker image..."
       - docker build -t ${ECR_REPO}/order:v1 .
