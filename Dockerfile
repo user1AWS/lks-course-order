@@ -16,7 +16,6 @@ ENV PORT=${PORT}
 ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
-RUN git clone https://github.com/user1AWS/lks-course-order.git /usr/src/app
 COPY . .
 RUN node -v
 RUN npm -v
