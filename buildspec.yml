@@ -8,7 +8,6 @@ env:
     AWS_REGION: "us-east-1"
     AWS_DYNAMODB_TABLE_PROD: "lks-order-production"
     AWS_DYNAMODB_TABLE_TEST: "lks-order-testing"
-    NODE_ENV: "development"
 
 phases:
   install:
@@ -26,7 +25,6 @@ phases:
       - source ebcli-venv/bin/activate
       - pip install --upgrade pip
       - pip install awsebcli
-      - npm install
       - echo "Retrieving AWS credentials from SSM Parameter Store..."
       - export AWS_ACCESS_KEY=$(aws ssm get-parameter --name "/course-order/AWS_ACCESS_KEY" --with-decryption --query "Parameter.Value" --output text)
       - export AWS_SECRET_KEY=$(aws ssm get-parameter --name "/course-order/AWS_SECRET_KEY" --with-decryption --query "Parameter.Value" --output text)
@@ -42,8 +40,12 @@ phases:
   build:
     commands:
       - echo "Running unit tests..."
+      - export NODE_ENV="development"
+      - npm install
       - npm run test --verbose
       - echo "Building Docker image..."
+      - export NODE_ENV="production"
+      - npm install
       - docker build -t ${ECR_REPO}/order:v1 .
 
   post_build:
