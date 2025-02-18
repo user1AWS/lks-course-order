@@ -26,8 +26,6 @@ phases:
       - pip install --upgrade pip
       - pip install awsebcli
       - npm install
-      - npm install -g mocha mocha-junit-reporter
-      - npm install --save-dev chai
       - echo "Retrieving AWS credentials from SSM Parameter Store..."
       - export AWS_ACCESS_KEY=$(aws ssm get-parameter --name "/course-order/AWS_ACCESS_KEY" --with-decryption --query "Parameter.Value" --output text)
       - export AWS_SECRET_KEY=$(aws ssm get-parameter --name "/course-order/AWS_SECRET_KEY" --with-decryption --query "Parameter.Value" --output text)
@@ -43,6 +41,7 @@ phases:
   build:
     commands:
       - echo "Running unit tests..."
+      - npm install chai mocha mocha-junit-reporter
       - npm run test
       - echo "Building Docker image..."
       - docker build -t ${ECR_REPO}/order:v1 .
