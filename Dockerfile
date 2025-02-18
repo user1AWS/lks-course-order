@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM 339712871948.dkr.ecr.us-east-1.amazonaws.com/order:latest
 RUN apk update && apk add --no-cache \
     curl \
     unzip \
