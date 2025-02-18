@@ -26,6 +26,7 @@ phases:
       - pip install --upgrade pip
       - pip install awsebcli
       - npm install
+      - npm install -g mocha
       - echo "Retrieving AWS credentials from SSM Parameter Store..."
       - export AWS_ACCESS_KEY=$(aws ssm get-parameter --name "/course-order/AWS_ACCESS_KEY" --with-decryption --query "Parameter.Value" --output text)
       - export AWS_SECRET_KEY=$(aws ssm get-parameter --name "/course-order/AWS_SECRET_KEY" --with-decryption --query "Parameter.Value" --output text)
