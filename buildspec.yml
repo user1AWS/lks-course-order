@@ -45,7 +45,6 @@ phases:
       - npm run test --verbose
       - echo "Building Docker image..."
       - export NODE_ENV="production"
-      - npm install
       - docker build -t ${ECR_REPO}/order:v1 .
 
   post_build:
