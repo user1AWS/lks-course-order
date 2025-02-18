@@ -41,7 +41,7 @@ phases:
   build:
     commands:
       - echo "Running unit tests..."
-      - DEBUG=* npm run test
+      - npm run test
       - echo "Building Docker image..."
       - docker build -t ${ECR_REPO}/order:v1 .
 
