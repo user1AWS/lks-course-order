@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:16-alpine
 RUN apk add g++ make py3-pip
 
 ARG NODE_ENV=production
