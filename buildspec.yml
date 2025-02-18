@@ -41,7 +41,8 @@ phases:
   build:
     commands:
       - echo "Running unit tests..."
-      - npm install chai mocha mocha-junit-reporter
+      - npm install -g mocha
+      - npm install chai mocha-junit-reporter
       - npm test
       - npm run test
       - echo "Building Docker image..."
