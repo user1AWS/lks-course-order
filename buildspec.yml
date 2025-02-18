@@ -12,7 +12,7 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 16
+      nodejs: 18
       docker: 20
     commands:
       - echo "Checking OS details..."
