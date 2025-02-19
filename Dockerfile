@@ -14,6 +14,9 @@ ARG PORT=8000
 
 ENV PORT=${PORT}
 ENV NODE_ENV=${NODE_ENV}
+ENV AWS_REGION=us-east-1
+ENV AWS_DYNAMODB_TABLE_PROD=lks-order-production
+ENV AWS_DYNAMODB_TABLE_TEST=lks-order-testing
 
 WORKDIR /usr/src/app
 COPY . .
