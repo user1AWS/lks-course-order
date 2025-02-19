@@ -24,6 +24,16 @@ ENV AWS_DYNAMODB_TABLE_TEST=lks-order-testing
 
 WORKDIR /usr/src/app
 COPY . .
+
+RUN aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID && \
+    aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY && \
+    aws configure set region $AWS_REGION && \
+    aws sts get-caller-identity
+
+RUN echo "AWS Access Key: $AWS_ACCESS_KEY_ID" && \
+    echo "AWS Secret Key: $AWS_SECRET_ACCESS_KEY" && \
+    aws sts get-caller-identity
+
 RUN node -v
 RUN npm -v
 RUN npm install
