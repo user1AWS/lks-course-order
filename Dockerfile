@@ -29,13 +29,13 @@ ENV AWS_DYNAMODB_TABLE_TEST=lks-order-testing
 RUN export PORT=8000
 # Identifikasi apakah berjalan di AWS CodeBuild
 RUN if [ -n "$CODEBUILD_BUILD_ID" ]; then \
+        echo "Running locally... Skipping AWS Credentials Fetch"; \
+    else \
         echo "Running inside AWS CodeBuild..."; \
         echo "Fetching credentials from AWS SSM Parameter Store..."; \
         export AWS_ACCESS_KEY=$(aws ssm get-parameter --name "/course-order/AWS_ACCESS_KEY" --with-decryption --query "Parameter.Value" --output text) && \
         export AWS_SECRET_KEY=$(aws ssm get-parameter --name "/course-order/AWS_SECRET_KEY" --with-decryption --query "Parameter.Value" --output text) && \
         echo "AWS Credentials Fetched"; \
-    else \
-        echo "Running locally... Skipping AWS Credentials Fetch"; \
     fi
 
 # Debugging: Periksa apakah kredensial berhasil diambil
