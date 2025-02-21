@@ -38,9 +38,6 @@ RUN if [ -n "$CODEBUILD_BUILD_ID" ]; then \
         echo "AWS Credentials Fetched"; \
     fi
 
-# Debugging: Periksa apakah kredensial berhasil diambil
-RUN echo "AWS Access Key: $AWS_ACCESS_KEY" && aws sts get-caller-identity
-
 # Set work directory dan copy source code
 WORKDIR /usr/src/app
 COPY . .
