@@ -1,3 +1,5 @@
+RUN aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 339712871948.dkr.ecr.us-east-1.amazonaws.com
+
 FROM 339712871948.dkr.ecr.us-east-1.amazonaws.com/order:latest
 RUN apk update && apk add --no-cache \
     curl \
